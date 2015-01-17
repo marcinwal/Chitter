@@ -20,6 +20,8 @@ feature "User signs in" do
 
   scenario "user can sign up" do 
     visit '/'
+    click_link("sign-up")   #click link with id 'sign-up'
+    expect(page).to have_content("Please sign up")
   end
 
 end

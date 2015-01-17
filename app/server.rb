@@ -23,3 +23,11 @@ get '/' do
   @peeps = Peep.all
   erb :index
 end
+
+get '/user/new' do 
+  @user = User.new
+  erb :"user/newuser"
+end
+
+post '/user' do 
+end
