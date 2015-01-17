@@ -2,7 +2,9 @@ class Comment
 
   include DataMapper::Resource
 
-  propert :id, Serial
+  belongs_to :peep
+
+  property :id, Serial
   property :comment, Text
 
 end

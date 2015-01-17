@@ -4,6 +4,9 @@ class User
 
   include DataMapper::Resource
 
+  has n, :peeps ,:through => Resource
+  has n, :comments ,:through => Resource
+
   property :id, Serial
   property :name, String
   property :username, String, :unique => true, :message => "User name is already taken"
@@ -19,7 +22,7 @@ class User
 
   def password=(password)
     @password = password
-    self.password_digest = Bcrypt::Password.create(password)
+    self.password_digest = BCrypt::Password.create(password)
   end
 
 end
