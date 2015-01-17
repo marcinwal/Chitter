@@ -20,4 +20,6 @@ use Rack::MethodOverride
 
 get '/' do
   "Hello Chitter!"
+  @peeps = Peep.all
+  erb :index
 end
