@@ -20,6 +20,10 @@ html {
 
 }
 
+#errors{
+  color: red;
+}
+
 body {
   background-repeat: no-repeat;
   background-attachment: fixed;

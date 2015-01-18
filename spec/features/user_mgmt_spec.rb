@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'byebug'
 require_relative 'helpers/session_helpers'
 
 feature "User signs in" do
@@ -7,13 +8,13 @@ feature "User signs in" do
 
 
 
-  before(:each) do 
-    User.create(:email => "test@test.com",
-                :name => "Testname",
-                :username => "Testusername",
-                :password => 'test',
-                :password_confirmation => 'test')
-  end
+   before(:each) do 
+     User.create(:email => "test@test.com",
+                 :name => "Testname",
+                 :username => "Testusername",
+                 :password => 'test',
+                 :password_confirmation => 'test')
+   end
 
   scenario "with nothing he should see chitter" do 
     visit '/'
@@ -30,6 +31,16 @@ feature "User signs in" do
     visit '/'
     click_link("sign-up") #going to usernew.erb page with the form to fill in
     expect{ sign_up }.to change(User, :count).by(1)
+  end
+
+  scenario ""
+
+  scenario "user can sign out" do 
+    user = user_create
+    visit '/'
+    save_and_open_page
+    click_button("Sign out")
+    expect(page).to have_content("Good bye!")
   end
 
 end

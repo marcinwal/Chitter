@@ -19,7 +19,7 @@ use Rack::MethodOverride
 
 
 get '/' do
-  "Hello Chitter!"
+  #session.clear #to delete !!! 
   @peeps = Peep.all
   erb :index
 end
@@ -33,12 +33,15 @@ post '/newuser' do
   @user = User.create(:name => params[:name], :username => params[:username],
                      :password => params[:password], :password_confirmation => params[:password_confirmation])
   if @user.save 
-
     session[:user_id] = @user.id
-    erb :index
+    redirect '/'#erb :index
   else
     flash.now[:errors] = @user.errors.full_messages
-    erb :index
+    redirect '/'#erb :index
   end
+
+delete '/sessions' do 
+  
+end  
 
 end

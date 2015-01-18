@@ -23,4 +23,19 @@ module SessionHelpers
       fill_in :password_confirmation, :with => password_confirmation
       click_button "Sign up"
   end 
+
+  def user_create(email = "test@test.com",
+              name = "Testname",
+              username = "Testusername",
+              password = 'test',
+              password_confirmation = 'test')
+  
+  u=User.create(  :email => email,
+                :name => name,
+                :username => name,
+                :password => password,
+                :password_confirmation => password_confirmation)
+  u.save
+  u
+  end
 end

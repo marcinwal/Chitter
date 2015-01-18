@@ -7,7 +7,7 @@
   </ul>
 <% end %>
 
-<% if flash[:notice] %>
+<% if flash[:notice] && !flash[:notice].empty? %>
   <div id="notice">
     <%= flash[:notice] %>
   </div>
