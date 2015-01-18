@@ -2,14 +2,6 @@ html {
   height: 100%;
   text-align: center;
   font-family: fantasy;
-  /*background: rgb(181,189,200); /* Old browsers */
-  /*background: -moz-linear-gradient(top,  rgba(181,189,200,1) 0%, rgba(130,140,149,1) 50%, rgba(40,52,59,1) 100%);*/ /* FF3.6+ */
-  /*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(181,189,200,1)), color-stop(50%,rgba(130,140,149,1)), color-stop(100%,rgba(40,52,59,1)));*/ /* Chrome,Safari4+ */
-  /*background: -webkit-linear-gradient(top,  rgba(181,189,200,1) 0%,rgba(130,140,149,1) 50%,rgba(40,52,59,1) 100%);*/ /* Chrome10+,Safari5.1+ */
-  /*background: -o-linear-gradient(top,  rgba(181,189,200,1) 0%,rgba(130,140,149,1) 50%,rgba(40,52,59,1) 100%);*/ /* Opera 11.10+ */
-  /*background: -ms-linear-gradient(top,  rgba(181,189,200,1) 0%,rgba(130,140,149,1) 50%,rgba(40,52,59,1) 100%);*/ /* IE10+ */
-  /*background: linear-gradient(to bottom,  rgba(181,189,200,1) 0%,rgba(130,140,149,1) 50%,rgba(40,52,59,1) 100%);*/ /* W3C */
-  /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5bdc8', endColorstr='#28343b',GradientType=0 );*/ /* IE6-9 */
   background: -moz-linear-gradient(293deg, rgba(255,255,0,1) 0%, rgba(0,128,128,1) 100%); /* ff3.6+ */
   background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, rgba(255,255,0,1)), color-stop(100%, rgba(0,128,128,1))); /* safari4+,chrome */
   background: -webkit-linear-gradient(293deg, rgba(255,255,0,1) 0%, rgba(0,128,128,1) 100%); /* safari5.1+,chrome10+ */
@@ -17,11 +9,18 @@ html {
   background: -ms-linear-gradient(293deg, rgba(255,255,0,1) 0%, rgba(0,128,128,1) 100%); /* ie10+ */
   background: linear-gradient(157deg, rgba(255,255,0,1) 0%, rgba(0,128,128,1) 100%); /* w3c */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFF00', endColorstr='#008080',GradientType=0 ); /* ie6-9 */
-
 }
 
-#errors{
+#errors {
   color: red;
+}
+
+#welcome-message{
+  background-color: #b77843;
+  margin-right: 800px;
+  margin-left: 40px; 
+  font-family: Helvetica, Arial, Sans-serif;
+
 }
 
 body {
@@ -45,6 +44,7 @@ body {
   font-size: 1.45em;
   font-weight: bold;
 }
+
 
 
 a:link, a:visted{
@@ -107,4 +107,39 @@ input.rounded:focus {}
 span{
   font-weight: bolder;
 }
+
+a.button {
+  display: inline-block; 
+  width: 40px;
+  background-color: #82B743;
+  border: 1.5px solid white;
+  color: white; 
+  text-decoration: none;
+  padding: 5px 10px;
+  text-align: center;
+  border-radius: 4px; 
+  margin-left: 5px;
+  margin-right: 4px;
+  margin-top: 4px;
+  text-shadow: 0 0 2px rgba(0,0,0, 0.4); 
+  font-size: 10px;
+  font-family: Helvetica, Arial, Sans-serif;
+}
+
+a.button.highlighted {
+  background-color: #b77843;
+  margin-right: 800px;
+  margin-left: 40px; 
+  font-family: Helvetica, Arial, Sans-serif;
+}
+
+a.peepnew {
+  background-color: #b77843;
+  margin-right: 800px;
+  margin-left: 40px; 
+  font-family: Helvetica, Arial, Sans-serif;
+
+}
+
+
 
