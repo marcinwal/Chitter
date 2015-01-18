@@ -74,8 +74,7 @@ end
 
 post '/newpeep' do 
   newpeep = params[:newpeep]
-  byebug
-  Peep.create(:text => newpeep, :user => current_user.id)
+  peep = Peep.create(:text => newpeep, :user_id => current_user.id)
   flash[:notice] = "Thank you for your new peep!"
   redirect '/'
 end
