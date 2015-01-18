@@ -24,10 +24,10 @@ get '/' do
   erb :index
 end
 
-get '/user/new' do 
+get '/newuser' do 
   @user = User.new
   erb :"user/newuser"
 end
 
-post '/user' do 
+post '/usernew' do 
 end
