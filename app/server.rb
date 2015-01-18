@@ -56,7 +56,7 @@ post '/signin' do
       flash[:errors] = ["Wrong email, username or password"]
       redirect '/'
   else 
-      session[:user_id] = User.first(:email => user.email).id
+      session[:user_id] = user.id
       flash[:notice] = "Welcome back #{user.username.capitalize}"
       redirect '/'
   end    
@@ -74,7 +74,8 @@ end
 
 post '/newpeep' do 
   newpeep = params[:newpeep]
-  peep = Peep.create(:text => newpeep, :user_id => current_user.id)
+  peep = Peep.create(:text => newpeep, :user_id => session[:user_id]) #!!!
+  # byebug
   flash[:notice] = "Thank you for your new peep!"
   redirect '/'
 end

@@ -10,6 +10,9 @@ feature 'user ' do
     click_link("Sign in")
     sign_in
     click_link("newpeep")
+    fill_in :newpeep, :with => "Test text"
+    click_button("Add peep")
+    expect(page).to have_content("Test text")
   end
 
 end

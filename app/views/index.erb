@@ -1,7 +1,7 @@
 <div id="peeps" class="peeps">
 <% if @peeps %>
   <% @peeps.each do |peep| %>
-    <%= peep.text %>
+    <%= peep.text %> by <%= User.first(:id => peep.user_id).username.capitalize %>
     <br>
   <% end %>
 <% end %>
