@@ -48,8 +48,18 @@ get '/signin' do #user is logging in
   erb :"user/signin"
 end
 
-post '/signin' do 
-  
+post '/signin' do
+  email_or_username,password = params[:email_or_username],params[:password]
+  user = User.authenticate_email(email_or_username,password)
+  user = User.authenticate_username(email_or_username,password) if !user
+  if !user
+      flash[:notice] = "Wrong email, username or password"
+      redirect '/'
+  else 
+      session[:user_id] = User.first(:email => user.email).id
+      flash[:notice] = "Welcome back #{user.username}"
+      redirect '/'
+  end    
 end 
 
 delete '/signout' do 
