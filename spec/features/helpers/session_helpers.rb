@@ -1,16 +1,16 @@
 module SessionHelpers 
-  def sign_in(email, password)
+  def sign_in(email = "test@test.com", password = "test")
     #save_and_open_page      SAVE IN M
     fill_in :email_or_username, :with => email
     fill_in :password, :with => password
     click_button 'Sign in'
   end
 
-  def sign_up(email = "alice@example.com",
-              name = "alice name",
-              username = "alice",
-              password = "oranges!",
-              password_confirmation = "oranges!")
+  def sign_up(email = "test@test.com",
+              name = "Testname",
+              username = "Testusername",
+              password = 'test',
+              password_confirmation = 'test')
 
 
       visit '/newuser'
