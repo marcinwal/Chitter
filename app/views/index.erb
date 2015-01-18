@@ -1,4 +1,7 @@
 Hello Chitter!
-<% @peeps.each do |peep| %>
-  <%= peep.text %>
+<% if @peeps %>
+  <% @peeps.each do |peep| %>
+    <%= peep.text %>
+  <% end %>
 <% end %>
+

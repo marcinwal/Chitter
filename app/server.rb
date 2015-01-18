@@ -29,5 +29,16 @@ get '/newuser' do
   erb :"user/newuser"
 end
 
-post '/usernew' do 
+post '/newuser' do 
+  @user = User.create(:name => params[:name], :username => params[:username],
+                     :password => params[:password], :password_confirmation => params[:password_confirmation])
+  if @user.save 
+
+    session[:user_id] = @user.id
+    erb :index
+  else
+    flash.now[:errors] = @user.errors.full_messages
+    erb :index
+  end
+
 end
