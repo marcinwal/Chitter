@@ -53,7 +53,7 @@ post '/signin' do
   user = User.authenticate_email(email_or_username,password)
   user = User.authenticate_username(email_or_username,password) if !user
   if !user
-      flash[:notice] = "Wrong email, username or password"
+      flash[:errors] = ["Wrong email, username or password"]
       redirect '/'
   else 
       session[:user_id] = User.first(:email => user.email).id
