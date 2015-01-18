@@ -5,6 +5,8 @@ require 'rack-flash'
 require 'sinatra/partial'
 require 'mailgun'
 
+require 'byebug'
+
 require_relative 'data_mapper_setup'
 
 set :partial_template_engine, :erb
@@ -39,9 +41,20 @@ post '/newuser' do
     flash.now[:errors] = @user.errors.full_messages
     redirect '/'#erb :index
   end
+end
 
-delete '/sessions' do 
+ 
+get '/signin' do #user is logging in 
+  erb :"user/signin"
+end
+
+post '/signin' do 
   
+end 
+
+delete '/signout' do 
+   flash[:notice] = "Good bye! #{current_user.username}"
+   session[:user_id] = nil
+   redirect '/'
 end  
 
-end

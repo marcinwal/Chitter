@@ -33,7 +33,8 @@ feature "User signs in" do
     expect{ sign_up }.to change(User, :count).by(1)
   end
 
-  scenario ""
+  scenario "user can sign in with correct credentials" do 
+  end
 
   scenario "user can sign out" do 
     user = user_create
