@@ -14,10 +14,10 @@ module SessionHelpers
               password_confirmation = "oranges!")
 
 
-      visit '/user/new'
+      visit '/user/newuser'
       expect(page.status_code).to eq(200)
       fill_in :name, :with => name
-      fill_in :usera_name, :with => name
+      fill_in :username, :with => name
       fill_in :email, :with => email
       fill_in :password, :with => password
       fill_in :password_confirmation, :with => password_confirmation

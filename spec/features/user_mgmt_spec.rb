@@ -3,6 +3,8 @@ require_relative 'helpers/session_helpers'
 
 feature "User signs in" do
 
+  include SessionHelpers
+
 
 
   before(:each) do 
@@ -22,6 +24,12 @@ feature "User signs in" do
     visit '/'
     click_link("sign-up")   #click link with id 'sign-up'
     expect(page).to have_content("Please sign up")
+  end
+
+  scenario "user can sign up with correct data" do
+    visit '/'
+    click_link("sign-up") #going to usernew.erb page with the form to fill in
+    expect{ sign_up }.to change(User, :count).by(1)
   end
 
 end
