@@ -23,6 +23,18 @@ html {
 
 }*/
 
+/*#user-peeps{
+  width: 25em;
+  text-align: left;
+}*/
+
+#peeps {
+  width: 35em;
+  text-align: left;
+  min-width: 35em;
+  margin-left: 10em;
+}
+
 body {
   background-repeat: no-repeat;
   background-attachment: fixed;

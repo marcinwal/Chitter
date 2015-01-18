@@ -57,13 +57,13 @@ post '/signin' do
       redirect '/'
   else 
       session[:user_id] = User.first(:email => user.email).id
-      flash[:notice] = "Welcome back #{user.username}"
+      flash[:notice] = "Welcome back #{user.username.capitalize}"
       redirect '/'
   end    
 end 
 
 delete '/signout' do 
-   flash[:notice] = "Good bye! #{current_user.username}"
+   flash[:notice] = "Good bye! #{current_user.username.capitalize}"
    session[:user_id] = nil
    redirect '/'
 end  

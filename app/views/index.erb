@@ -1,6 +1,9 @@
+<div id="peeps" class="peeps">
 <% if @peeps %>
   <% @peeps.each do |peep| %>
     <%= peep.text %>
+    <br>
   <% end %>
 <% end %>
+</div>
 
