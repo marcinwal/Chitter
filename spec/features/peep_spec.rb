@@ -9,7 +9,7 @@ feature 'user ' do
     visit '/'
     click_link("Sign in")
     sign_in
-    click_link("peepnew")
+    click_link("newpeep")
   end
 
 end

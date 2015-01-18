@@ -8,7 +8,7 @@
     <div id="user-peeps">
       <% if current_user %>
         <span id="welcome-message">
-          Welcome, <%= current_user.username %>  <a href='/peepnew' id='peepnew' class='button'>Peep</a>
+          Welcome, <%= current_user.username %>  <a href='/newpeep' id='newpeep' class='button'>Peep</a>
         </span>
 
         <form id="sign-out" method="post" action="/signout">

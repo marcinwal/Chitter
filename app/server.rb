@@ -68,3 +68,15 @@ delete '/signout' do
    redirect '/'
 end  
 
+get '/newpeep' do
+  erb :"peep/newpeep"
+end
+
+post '/newpeep' do 
+  newpeep = params[:newpeep]
+  byebug
+  Peep.create(:text => newpeep, :user => current_user.id)
+  flash[:notice] = "Thank you for your new peep!"
+  redirect '/'
+end
+
