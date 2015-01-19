@@ -145,6 +145,7 @@ a.button {
   text-shadow: 0 0 2px rgba(0,0,0, 0.4); 
   font-size: 10px;
   font-family: Helvetica, Arial, Sans-serif;
+  height: 1.5em;
 }
 
 a.button.highlighted {

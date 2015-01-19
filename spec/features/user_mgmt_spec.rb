@@ -8,7 +8,7 @@ feature "signs in" do
 
   scenario "with nothing he should see chitter" do 
     visit '/'
-    expect(page).to have_content("Hello Chitter!")
+    expect(page).to have_content("Chitter")
   end 
 
   scenario "can sign up" do 

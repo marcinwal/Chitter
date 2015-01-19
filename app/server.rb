@@ -100,3 +100,10 @@ get '/newcomment/:id' do
  redirect "/commentnew/#{peep_id}"
 end
 
+get '/passwordrequest' do 
+  erb :"password/passwordrequest"
+end
+
+
+
+
