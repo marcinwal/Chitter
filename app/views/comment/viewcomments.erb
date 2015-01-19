@@ -5,6 +5,7 @@ Your comment: <input type="text" id="newcomment" name="newcomment">
 </form>
 <br>
 Other comments for <%= @peep.text %>
+<br>
 <% if @comments.count != 0 %>
   <% @comments.each do |comment| %>
     <%= comment.comment %>

@@ -16,7 +16,6 @@ feature 'password' do
     visit '/'
     click_link("Pass")
     fill_in :email, :with => "test@test.com"
-
     click_button("request")
     # save_and_open_page
     expect(page).to have_content("Token has been sent to you!")

@@ -163,5 +163,25 @@ a.peepnew {
 
 }
 
+input[type="submit"]{
+ display: inline-block; 
+  width: 40px;
+  background-color: #82B743;
+  border: 1.5px solid white;
+  color: white; 
+  text-decoration: none;
+  padding: 5px 10px;
+  text-align: center;
+  border-radius: 4px; 
+  margin-left: 5px;
+  margin-right: 4px;
+  margin-top: 4px;
+  text-shadow: 0 0 2px rgba(0,0,0, 0.4); 
+  font-size: 10px;
+  font-family: Helvetica, Arial, Sans-serif;
+  height: 2.5em; 
+  width: 5.5em; 
+}
+
 
 

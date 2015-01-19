@@ -112,11 +112,12 @@ post '/passwordrequest' do
     user.password_token = token
     user.password_token_timestamp = Time.now
     user.save
+    msg = "/passwordrequest/?token=#{token}"
+    send_simple_message("Chitter@chitter.com",email,"Recovery",msg)
     flash[:notice] = "Token has been sent to you!"
   else
     flash[:notice] = "No such user recorded"
   end  
-  #send the email !!!!!!!!
   redirect to('/')  
 end 
 
