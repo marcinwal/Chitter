@@ -8,6 +8,7 @@ require 'mailgun'
 require 'byebug'
 
 require_relative 'data_mapper_setup'
+require_relative 'helpers/application'
 
 set :partial_template_engine, :erb
 set :public, 'public'
@@ -38,7 +39,7 @@ post '/newuser' do
     session[:user_id] = @user.id
     redirect '/'#erb :index
   else
-    flash.now[:errors] = @user.errors.full_messages
+    flash[:errors] = @user.errors.full_messages
     redirect '/'#erb :index
   end
 end
@@ -75,8 +76,27 @@ end
 post '/newpeep' do 
   newpeep = params[:newpeep]
   peep = Peep.create(:text => newpeep, :user_id => session[:user_id]) #!!!
-  # byebug
   flash[:notice] = "Thank you for your new peep!"
   redirect '/'
+end
+
+get '/commentnew/:id' do
+  peep_ref = params[:id]
+  # byebug
+  @peep = Peep.first(:id => peep_ref)
+  @comments = Comment.all(:peep_id => peep_ref)
+  erb :"comment/viewcomments"
+end
+
+get '/newcomment/:id' do
+ peep_id = params[:id]
+ comment = params[:newcomment] 
+ comm = Comment.create(:comment => comment,
+                       :peep_id => peep_id,
+                       :user_id => session[:user_id])
+ @peep = Peep.first(:id => peep_id)
+ @comments = Comment.all(:peep_id => @peep.id)
+ #erb :"comment/viewcomments"
+ redirect "/commentnew/#{peep_id}"
 end
 

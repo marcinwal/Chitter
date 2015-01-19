@@ -1,9 +1,16 @@
 <div id="peeps" class="peeps">
 <% if @peeps %>
   <% @peeps.each do |peep| %>
-    <%= peep.text %> by <%= User.first(:id => peep.user_id).username.capitalize %>
+    <%= peep.text %> by <%= User.first(:id => peep.user_id).username.capitalize %> 
+    <% if current_user %> 
+      <form action=<%= "/commentnew/#{peep.id}" %> method="get">
+        <input type="submit" value="Comment">
+      </form>
+    <% end %>  
     <br>
   <% end %>
 <% end %>
+
+
 </div>
 

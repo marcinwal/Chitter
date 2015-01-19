@@ -1,0 +1,14 @@
+<div>
+<form action=<%= "/newcomment/#{@peep.id}" %>  method="get">
+Your comment: <input type="text" id="newcomment" name="newcomment">
+<input type="submit" value="Comment now">
+</form>
+<br>
+Other comments for <%= @peep.text %>
+<% if @comments.count != 0 %>
+  <% @comments.each do |comment| %>
+    <%= comment.comment %>
+    <br>
+  <% end %>
+<% end %>
+</div>

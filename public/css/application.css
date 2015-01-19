@@ -15,6 +15,13 @@ html {
   color: red;
 }
 
+#name {
+  /*border-style: solid;*/
+  /*width: 10em;*/
+  /*text-decoration: inherit;*/
+  text-align: left;
+}
+
 /*#welcome-message{
   background-color: #b77843;
   margin-right: 800px;
@@ -29,9 +36,11 @@ html {
 }*/
 
 #peeps {
-  width: 35em;
+  width: 25em;
   text-align: left;
-  min-width: 35em;
+  padding-left: 5em;
+  min-width: 25em;
+  border-style: hidden;
   margin-left: 10em;
 }
 
