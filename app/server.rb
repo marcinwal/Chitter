@@ -104,6 +104,22 @@ get '/passwordrequest' do
   erb :"password/passwordrequest"
 end
 
+post '/passwordrequest' do 
+  email = params[:email]
+  user = User.first(:email => email)
+  if user
+    token = (1..64).map{('A'..'Z').to_a.sample}.join
+    user.password_token = token
+    user.password_token_timestamp = Time.now
+    user.save
+    flash[:notice] = "Token has been sent to you!"
+  else
+    flash[:notice] = "No such user recorded"
+  end  
+  #send the email !!!!!!!!
+  redirect to('/')  
+end 
+
 
 
 
