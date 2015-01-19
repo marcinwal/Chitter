@@ -13,7 +13,7 @@ class User
   property :email, String, :unique => true, :message => "Email is already registered"
   property :password_digest, Text
   property :password_token, Text
-  property :password_token_timestamp, Date
+  property :password_token_timestamp, DateTime
 
   attr_reader :password
   attr_accessor :password_confirmation
@@ -41,6 +41,10 @@ class User
     else
       nil
     end
+  end
+
+  def self.generate_token
+    (1..64).map{('A'..'Z').to_a.sample}.join
   end  
 
 end

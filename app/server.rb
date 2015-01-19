@@ -9,9 +9,16 @@ require 'byebug'
 
 require_relative 'data_mapper_setup'
 require_relative 'helpers/application'
+require_relative 'controllers/application'
+require_relative 'controllers/user'
+require_relative 'controllers/peep'
+require_relative 'controllers/comment'
+require_relative 'controllers/password'
+
 
 set :partial_template_engine, :erb
 set :public, 'public'
+HELP_PATH = "http://localhost:9292"
 
 env = ENV["RACK_ENV"] || 'development'
 
@@ -21,84 +28,6 @@ use Rack::Flash  #using flash
 use Rack::MethodOverride
 
 
-get '/' do
-  #session.clear #to delete !!! 
-  @peeps = Peep.all
-  erb :index
-end
-
-get '/newuser' do 
-  @user = User.new
-  erb :"user/newuser"
-end
-
-post '/newuser' do 
-  @user = User.create(:name => params[:name], :username => params[:username],
-                     :password => params[:password], :password_confirmation => params[:password_confirmation])
-  if @user.save 
-    session[:user_id] = @user.id
-    redirect '/'#erb :index
-  else
-    flash[:errors] = @user.errors.full_messages
-    redirect '/'#erb :index
-  end
-end
-
- 
-get '/signin' do #user is logging in 
-  erb :"user/signin"
-end
-
-post '/signin' do
-  email_or_username,password = params[:email_or_username],params[:password]
-  user = User.authenticate_email(email_or_username,password)
-  user = User.authenticate_username(email_or_username,password) if !user
-  if !user
-      flash[:errors] = ["Wrong email, username or password"]
-      redirect '/'
-  else 
-      session[:user_id] = user.id
-      flash[:notice] = "Welcome back #{user.username.capitalize}"
-      redirect '/'
-  end    
-end 
-
-delete '/signout' do 
-   flash[:notice] = "Good bye! #{current_user.username.capitalize}"
-   session[:user_id] = nil
-   redirect '/'
-end  
-
-get '/newpeep' do
-  erb :"peep/newpeep"
-end
-
-post '/newpeep' do 
-  newpeep = params[:newpeep]
-  peep = Peep.create(:text => newpeep, :user_id => session[:user_id]) #!!!
-  flash[:notice] = "Thank you for your new peep!"
-  redirect '/'
-end
-
-get '/commentnew/:id' do
-  peep_ref = params[:id]
-  # byebug
-  @peep = Peep.first(:id => peep_ref)
-  @comments = Comment.all(:peep_id => peep_ref)
-  erb :"comment/viewcomments"
-end
-
-get '/newcomment/:id' do
- peep_id = params[:id]
- comment = params[:newcomment] 
- comm = Comment.create(:comment => comment,
-                       :peep_id => peep_id,
-                       :user_id => session[:user_id])
- @peep = Peep.first(:id => peep_id)
- @comments = Comment.all(:peep_id => @peep.id)
- #erb :"comment/viewcomments"
- redirect "/commentnew/#{peep_id}"
-end
 
 get '/passwordrequest' do 
   erb :"password/passwordrequest"
@@ -109,10 +38,11 @@ post '/passwordrequest' do
   user = User.first(:email => email)
   if user
     token = (1..64).map{('A'..'Z').to_a.sample}.join
-    user.password_token = token
     user.password_token_timestamp = Time.now
     user.save
-    msg = "/passwordrequest/?token=#{token}"
+    msg = HELP_PATH # ?????? how to change it
+    msg += "/passwordre?token=#{token}"
+    puts msg
     send_simple_message("Chitter@chitter.com",email,"Recovery",msg)
     flash[:notice] = "Token has been sent to you!"
   else
@@ -120,6 +50,26 @@ post '/passwordrequest' do
   end  
   redirect to('/')  
 end 
+
+get '/passwordre' do 
+  token = params[:token]
+  user = User.first(:password_token => token)
+  old_time =user.password_token_timestamp
+  now = DateTime.now
+  # byebug   ?????????????????????????
+  if (user  && (now-old_time) < 900)
+    user.update(:password_token => nil,:password_token_timestamp => nil)
+    user.save
+    redirect to :"password/recoveryinput"
+  else
+    flash[:errors] = "Wrong token or too late"
+  end
+end
+
+
+post '/recoverypass' do 
+  
+end
 
 
 
