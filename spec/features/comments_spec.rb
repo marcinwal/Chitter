@@ -25,8 +25,8 @@ feature 'user ' do
     click_link("newpeep")
     fill_in :newpeep, :with => "Test text"
     click_button("Add peep")
-    expect(page).to have_content("Test text")
     click_button("Comment")
+    expect(Comment.count).to eq(0)
     fill_in :newcomment, :with => "Test comment"
     click_button("Comment now")
     expect(Comment.count).to eq(1)
