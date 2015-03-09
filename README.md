@@ -1,4 +1,9 @@
-This is a w/e challenge for MA week 4.
+#Chitter
+
+Small commenting application for MA week4 challenge;
+
+#Tasks
+
 Create an application Chitter which is going to let users to:
   register
   login
